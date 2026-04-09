@@ -1,0 +1,1 @@
+DELETE FROM fishing_locations WHERE name ~ '- \d+$';

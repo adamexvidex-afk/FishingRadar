@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS fish_species_name_en_unique ON fish_species (LOWER(name_en));

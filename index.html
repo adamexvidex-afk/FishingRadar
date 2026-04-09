@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>FishingRadar – Real-Time Fishing Conditions Across the USA</title>
+    <meta name="description" content="FishingRadar is a smart fishing app for the USA. Real-time USGS water data, NOAA weather, 15+ fish species catalog, catch log, hotspots and license info — all in one place.">
+    <meta name="author" content="FishingRadar" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0d6e8a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FishingRadar" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/pwa-icon-512.png" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://hfwysfwtsnxyetpyjziy.supabase.co" />
+    <link rel="preconnect" href="https://hfwysfwtsnxyetpyjziy.supabase.co" crossorigin />
+    <link rel="dns-prefetch" href="https://server.arcgisonline.com" />
+    <link rel="preconnect" href="https://server.arcgisonline.com" crossorigin />
+
+    <!-- OG Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="FishingRadar" />
+
+    <!-- Twitter Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "FishingRadar",
+      "description": "Smart fishing app for the USA with real-time USGS water data, NOAA weather, fish catalog, catch log and hotspot map.",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "en",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "FishingRadar"
+      },
+      "featureList": [
+        "Real-time fishing conditions (USGS + NOAA)",
+        "American fish catalog with 15+ species",
+        "Catch log with photos",
+        "Hotspot map across all 50 states",
+        "Fish movement simulation",
+        "State fishing license info"
+      ]
+    }
+    </script>
+    <meta property="og:title" content="FishingRadar – Real-Time Fishing Conditions Across the USA">
+    <meta name="twitter:title" content="FishingRadar – Real-Time Fishing Conditions Across the USA">
+    <meta property="og:description" content="FishingRadar is a smart fishing app for the USA. Real-time USGS water data, NOAA weather, 15+ fish species catalog, catch log, hotspots and license info — all in one place.">
+    <meta name="twitter:description" content="FishingRadar is a smart fishing app for the USA. Real-time USGS water data, NOAA weather, 15+ fish species catalog, catch log, hotspots and license info — all in one place.">
+    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f5fc9216-9f14-4f0a-a888-b700a60d9e40/id-preview-b1cb0a79--f17db0a9-9680-4bb8-a20e-c3eecaca9642.lovable.app-1773062177743.png">
+    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f5fc9216-9f14-4f0a-a888-b700a60d9e40/id-preview-b1cb0a79--f17db0a9-9680-4bb8-a20e-c3eecaca9642.lovable.app-1773062177743.png">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

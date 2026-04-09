@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS idx_catches_public_location ON public.catches (is_public, catch_date DESC) WHERE is_public = true AND location_lat IS NOT NULL AND location_lng IS NOT NULL;

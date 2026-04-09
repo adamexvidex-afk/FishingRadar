@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS ui_translations_language_code_unique ON public.ui_translations (language_code);

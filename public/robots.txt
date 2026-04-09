@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /profile-setup
+Disallow: /profile-edit
+
+Sitemap: https://ribiskiradar.lovable.app/sitemap.xml

@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light theme — warm ocean, organic, premium feel */
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+
+    --primary: 210 80% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 16% 93%;
+    --secondary-foreground: 220 25% 12%;
+
+    --muted: 220 14% 93%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 210 60% 95%;
+    --accent-foreground: 210 80% 35%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 89%;
+    --ring: 210 80% 52%;
+
+    --radius: 1rem;
+
+    --water: 200 70% 50%;
+    --water-foreground: 0 0% 100%;
+    --nature: 152 45% 42%;
+    --nature-foreground: 0 0% 100%;
+    --warm: 28 85% 56%;
+    --warm-foreground: 28 90% 15%;
+    --score-excellent: 160 60% 40%;
+    --score-good: 160 45% 48%;
+    --score-ok: 40 75% 50%;
+    --score-poor: 0 65% 50%;
+
+    --shadow-card: 0 1px 4px 0 hsl(220 20% 10% / 0.04), 0 1px 2px -1px hsl(220 20% 10% / 0.03);
+    --shadow-elevated: 0 8px 32px -6px hsl(220 30% 15% / 0.1), 0 4px 12px -4px hsl(220 20% 10% / 0.06);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 25% 12%;
+    --sidebar-primary: 210 80% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 60% 95%;
+    --sidebar-accent-foreground: 210 80% 35%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 210 80% 52%;
+    --chart-1: 210 80% 52%;
+    --chart-2: 200 70% 50%;
+    --chart-3: 220 10% 60%;
+    --chart-4: 28 85% 56%;
+    --chart-5: 0 65% 50%;
+    --sidebar: 0 0% 100%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.08), 0 1px 2px -1px hsl(0 0% 0% / 0.06);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.08), 0 1px 2px -1px hsl(0 0% 0% / 0.06);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.08), 0 2px 4px -2px hsl(0 0% 0% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -4px hsl(0 0% 0% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.08), 0 8px 10px -6px hsl(0 0% 0% / 0.05);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.2);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
+  /* Dark theme — deep ocean, immersive */
+  .dark {
+    --background: 220 25% 7%;
+    --foreground: 215 20% 94%;
+
+    --card: 220 22% 11%;
+    --card-foreground: 215 20% 94%;
+
+    --popover: 220 22% 13%;
+    --popover-foreground: 215 20% 94%;
+
+    --primary: 210 75% 58%;
+    --primary-foreground: 220 25% 7%;
+
+    --secondary: 220 18% 16%;
+    --secondary-foreground: 215 15% 85%;
+
+    --muted: 220 14% 18%;
+    --muted-foreground: 220 10% 52%;
+
+    --accent: 210 35% 16%;
+    --accent-foreground: 210 70% 68%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 220 14% 16%;
+    --input: 220 14% 18%;
+    --ring: 210 75% 58%;
+
+    --shadow-card: 0 2px 8px 0 hsl(0 0% 0% / 0.3);
+    --shadow-elevated: 0 16px 48px -8px hsl(0 0% 0% / 0.5);
+
+    --sidebar-background: 220 25% 5%;
+    --sidebar-foreground: 215 20% 94%;
+    --sidebar-primary: 210 75% 58%;
+    --sidebar-primary-foreground: 220 25% 7%;
+    --sidebar-accent: 210 35% 16%;
+    --sidebar-accent-foreground: 210 70% 68%;
+    --sidebar-border: 220 14% 16%;
+    --sidebar-ring: 210 75% 58%;
+    --chart-1: 210 75% 60%;
+    --chart-2: 200 70% 58%;
+    --chart-3: 220 10% 52%;
+    --chart-4: 28 85% 60%;
+    --chart-5: 0 65% 55%;
+    --sidebar: 220 22% 11%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.15);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.15);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.2), 0 1px 2px -1px hsl(0 0% 0% / 0.15);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.2), 0 1px 2px -1px hsl(0 0% 0% / 0.15);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -2px hsl(0 0% 0% / 0.15);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.25), 0 4px 6px -4px hsl(0 0% 0% / 0.15);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.3), 0 8px 10px -6px hsl(0 0% 0% / 0.15);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Outfit', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* GPU-accelerated smooth transitions */
+@layer utilities {
+  .score-excellent {
+    @apply bg-score-excellent text-white;
+  }
+  .score-good {
+    @apply bg-score-good text-white;
+  }
+  .score-ok {
+    @apply bg-score-ok text-warm-foreground;
+  }
+  .score-poor {
+    @apply bg-score-poor text-white;
+  }
+
+  /* Force GPU compositing for animated elements */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+}
+
+/* Smoother global transitions */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Snapchat-style catch markers on map */
+.snap-catch-marker {
+  background: none !important;
+  border: none !important;
+  transition: transform 0.15s ease;
+}
+.snap-catch-marker:hover {
+  transform: scale(1.15);
+  z-index: 9999 !important;
+}
+
+/* Splash screen CSS animations (no framer-motion needed) */
+@keyframes splash-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes splash-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes splash-icon {
+  from { transform: scale(0) rotate(-45deg); }
+  to { transform: scale(1) rotate(0deg); }
+}
+@keyframes splash-slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes splash-dot {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}

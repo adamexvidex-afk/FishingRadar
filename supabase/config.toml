@@ -1,0 +1,25 @@
+project_id = "hfwysfwtsnxyetpyjziy"
+
+[functions]
+  [functions.auth-email-hook]
+    verify_jwt = false
+  [functions.auto-generate-fish-illustrations]
+    verify_jwt = false
+  [functions.check-admin]
+    verify_jwt = false
+  [functions.daily-tip]
+    verify_jwt = false
+  [functions.fishing-predictions]
+    verify_jwt = false
+  [functions.fix-seed-names]
+    verify_jwt = false
+  [functions.generate-catch-photos]
+    verify_jwt = false
+  [functions.generate-seed-avatars]
+    verify_jwt = false
+  [functions.process-email-queue]
+    verify_jwt = true
+  [functions.seed-community]
+    verify_jwt = false
+  [functions.verify-catch]
+    verify_jwt = false
