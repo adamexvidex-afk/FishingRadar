@@ -1,9 +1,3 @@
-Seveda — tukaj imaš cel codemagic.yaml ready za copy-paste.
-
-
-
-Zamenjaj cel file s tem:
-
 workflows:
   ios-workflow:
     name: iOS Workflow
