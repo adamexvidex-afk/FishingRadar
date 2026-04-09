@@ -5,6 +5,7 @@ workflows:
     environment:
       xcode: 26.0
       node: latest
+
     scripts:
       - name: Install dependencies
         script: |
@@ -23,9 +24,10 @@ workflows:
           xcode-project use-profiles
 
       - name: Build IPA
-  script: |
-    xcode-project build-ipa \
-      --workspace ios/App/App.xcworkspace \
-      --scheme App
+        script: |
+          xcode-project build-ipa \
+            --workspace ios/App/App.xcworkspace \
+            --scheme App
+
     artifacts:
       - build/ios/ipa/*.ipa
