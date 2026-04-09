@@ -5,7 +5,12 @@ workflows:
     environment:
       xcode: 26.0
       node: latest
-
+      
+      ios_signing:
+        certificates:
+          - ios_dist
+        provisioning_profiles:
+          - ios_appstore_profile 
     scripts:
       - name: Install dependencies
         script: |
