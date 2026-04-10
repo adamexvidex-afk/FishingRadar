@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-import { Fish, Eye, EyeOff, Camera, User, Mail } from 'lucide-react';
+import { Eye, EyeOff, Camera, User, Mail } from 'lucide-react';
+import logoImg from '@/assets/fishingradar-logo.png';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -150,8 +151,7 @@ const LoginPage = () => {
 
     try {
       // Use the published web URL for redirect — Capacitor App Links / Universal Links
-      // will intercept this and open the native app
-      const redirectUrl = 'https://fishingradar.lovable.app';
+      const redirectUrl = 'https://fishingradar.lovable.app/verified';
       const { data: signUpData, error } = await supabase.auth.signUp({
         email,
         password,
@@ -199,7 +199,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`,
+        redirectTo: 'https://fishingradar.lovable.app/reset-password',
       });
       if (error) {
         toast.error(error.message);
@@ -217,9 +217,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-[60vh] items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6 text-center">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-          <Fish className="h-8 w-8 text-primary" />
-        </div>
+        <img src={logoImg} alt="FishingRadar" className="mx-auto h-16 w-16 rounded-2xl" />
         <div>
           <h1 className="font-display text-2xl font-extrabold text-foreground">
             {mode === 'signup' ? t('login.createFRAccount') : t('nav.login')}

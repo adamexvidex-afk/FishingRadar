@@ -13,11 +13,11 @@ import {
   Search,
   LocateFixed,
   Loader2,
-  Waves,
   TrendingUp,
   Sparkles,
   Users,
 } from 'lucide-react';
+import logoImg from '@/assets/fishingradar-logo.png';
 
 const OceanBackground = lazy(() => import('@/components/OceanBackground'));
 import { Input } from '@/components/ui/input';
@@ -178,9 +178,7 @@ const Index = () => {
         className="space-y-4"
       >
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-            <Waves className="h-4 w-4 text-primary" />
-          </div>
+          <img src={logoImg} alt="FishingRadar" className="h-8 w-8 rounded-lg" />
           <span className="text-sm font-semibold text-primary tracking-wide">FishingRadar</span>
         </div>
 

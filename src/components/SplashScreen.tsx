@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import logoImg from '@/assets/fishingradar-logo.png';
 
 const SplashScreen = ({ onDone }: { onDone: () => void }) => {
   const isFirstVisit = !localStorage.getItem('fr_visited');
@@ -35,13 +36,7 @@ const SplashScreen = ({ onDone }: { onDone: () => void }) => {
           className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white/15 backdrop-blur-sm shadow-lg ring-1 ring-white/20"
           style={{ animation: 'splash-icon 0.4s cubic-bezier(0.25,0.46,0.45,0.94) 0.1s both' }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-foreground">
-            <path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6-3.56 0-7.56-2.53-8.5-6Z"/>
-            <path d="M18 12v.5"/>
-            <path d="M16 17.93a9.77 9.77 0 0 1-4 .07"/>
-            <path d="M2 12S7.5 8 11 8"/>
-            <path d="M2 12s5.5 4 9 4"/>
-          </svg>
+          <img src={logoImg} alt="FishingRadar" className="h-12 w-12 rounded-xl" />
         </div>
 
         <h1

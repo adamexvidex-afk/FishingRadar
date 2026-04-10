@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { Fish, Sun, Moon, User, LogOut, Crown } from 'lucide-react';
+import { Sun, Moon, User, LogOut, Crown } from 'lucide-react';
+import logoImg from '@/assets/fishingradar-logo.png';
 import PremiumCrown from '@/components/PremiumCrown';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -33,9 +34,7 @@ const Header = () => {
       <div className="container mx-auto flex h-14 lg:h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-            <Fish className="h-5 w-5" />
-          </div>
+          <img src={logoImg} alt="FishingRadar" className="h-9 w-9 rounded-xl shadow-sm" />
           <span className="text-lg font-bold text-foreground tracking-tight">
             FishingRadar
           </span>
