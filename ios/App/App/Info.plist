@@ -47,5 +47,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>FishingRadar needs your location to find nearby fishing conditions.</string>
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>FishingRadar needs your location to find nearby fishing conditions.</string>
 </dict>
 </plist>
