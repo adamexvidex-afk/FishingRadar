@@ -1,3 +1,9 @@
+Seveda — tukaj imaš cel popravljeni Index.tsx z iOS-friendly geolokacijo prek @capacitor/geolocation.
+
+
+
+Samo copy-paste celega fajla.
+
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -18,6 +24,7 @@ import {
   Users,
 } from 'lucide-react';
 import logoImg from '@/assets/fishingradar-logo.png';
+import { Geolocation } from '@capacitor/geolocation';
 
 const OceanBackground = lazy(() => import('@/components/OceanBackground'));
 import { Input } from '@/components/ui/input';
@@ -29,7 +36,7 @@ import { useArsoData } from '@/hooks/useArsoData';
 const LOCATIONS = [
   { key: 'potomac river', lat: 38.9, lng: -77.0, label: 'Potomac River' },
   { key: 'delaware river', lat: 40.22, lng: -74.77, label: 'Delaware River' },
-  { key: 'connecticut river', lat: 41.80, lng: -72.60, label: 'Connecticut River' },
+  { key: 'connecticut river', lat: 41.8, lng: -72.6, label: 'Connecticut River' },
   { key: 'hudson river', lat: 42.75, lng: -73.69, label: 'Hudson River' },
   { key: 'susquehanna river', lat: 39.65, lng: -76.17, label: 'Susquehanna River' },
   { key: 'kennebec river', lat: 44.63, lng: -69.73, label: 'Kennebec River' },
@@ -40,7 +47,7 @@ const LOCATIONS = [
   { key: 'neuse river', lat: 35.27, lng: -77.58, label: 'Neuse River' },
   { key: 'james river', lat: 37.56, lng: -77.54, label: 'James River' },
   { key: 'mississippi river', lat: 38.63, lng: -90.18, label: 'Mississippi River' },
-  { key: 'missouri river', lat: 39.10, lng: -94.59, label: 'Missouri River' },
+  { key: 'missouri river', lat: 39.1, lng: -94.59, label: 'Missouri River' },
   { key: 'ohio river', lat: 40.44, lng: -80.02, label: 'Ohio River' },
   { key: 'mille lacs lake', lat: 46.13, lng: -94.36, label: 'Mille Lacs Lake' },
   { key: 'lake erie', lat: 41.68, lng: -83.47, label: 'Lake Erie' },
@@ -80,9 +87,9 @@ const features = [
 ];
 
 const FALLBACK_TIPS = [
-  { title: "Water Temp Dropping?", body: "Try deeper pools for trout today. Slower presentations work best in cold water." },
-  { title: "Morning Bite Window", body: "First 2 hours after sunrise are prime. Target shallow weed edges with topwater lures." },
-  { title: "Cloudy Day Advantage", body: "Overcast skies push fish to shallow water. Use bright-colored lures for better visibility." },
+  { title: 'Water Temp Dropping?', body: 'Try deeper pools for trout today. Slower presentations work best in cold water.' },
+  { title: 'Morning Bite Window', body: 'First 2 hours after sunrise are prime. Target shallow weed edges with topwater lures.' },
+  { title: 'Cloudy Day Advantage', body: 'Overcast skies push fish to shallow water. Use bright-colored lures for better visibility.' },
 ];
 
 const Index = () => {
@@ -93,25 +100,28 @@ const Index = () => {
   const [dailyTip, setDailyTip] = useState<{ title: string; body: string } | null>(null);
   const { data: arsoData } = useArsoData();
 
-  // Fetch daily tip
   useEffect(() => {
     const fetchTip = async () => {
-      // Use a cached tip if fetched today
       const cached = sessionStorage.getItem('daily-tip');
       const cachedDate = sessionStorage.getItem('daily-tip-date');
       const today = new Date().toISOString().slice(0, 10);
-      
+
       if (cached && cachedDate === today) {
-        try { setDailyTip(JSON.parse(cached)); return; } catch {}
+        try {
+          setDailyTip(JSON.parse(cached));
+          return;
+        } catch {}
       }
 
       try {
-        const conditions = arsoData ? {
-          waterTemp: arsoData.waterTemp,
-          airTemp: arsoData.airTemp,
-          pressure: arsoData.pressure,
-          moonPhase: arsoData.moonPhase,
-        } : undefined;
+        const conditions = arsoData
+          ? {
+              waterTemp: arsoData.waterTemp,
+              airTemp: arsoData.airTemp,
+              pressure: arsoData.pressure,
+              moonPhase: arsoData.moonPhase,
+            }
+          : undefined;
 
         const { data, error } = await supabase.functions.invoke('daily-tip', {
           body: { conditions },
@@ -122,7 +132,6 @@ const Index = () => {
           sessionStorage.setItem('daily-tip', JSON.stringify(data));
           sessionStorage.setItem('daily-tip-date', today);
         } else {
-          // Fallback
           const fallback = FALLBACK_TIPS[new Date().getDate() % FALLBACK_TIPS.length];
           setDailyTip(fallback);
         }
@@ -142,25 +151,35 @@ const Index = () => {
     }
   };
 
-  const handleUseMyLocation = () => {
-    if (!navigator.geolocation) {
-      toast.error(t('home.locationNotSupported'));
-      return;
-    }
-    setLocating(true);
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const nearest = findNearest(pos.coords.latitude, pos.coords.longitude);
-        setLocation(nearest.key);
-        setLocating(false);
-        navigate(`/conditions?q=${encodeURIComponent(nearest.key)}`);
-      },
-      () => {
+  const handleUseMyLocation = async () => {
+    try {
+      setLocating(true);
+
+      const permission = await Geolocation.requestPermissions();
+
+      if (
+        permission.location !== 'granted' &&
+        permission.coarseLocation !== 'granted'
+      ) {
         setLocating(false);
         toast.error(t('home.locationDenied'));
-      },
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
+        return;
+      }
+
+      const pos = await Geolocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 15000,
+      });
+
+      const nearest = findNearest(pos.coords.latitude, pos.coords.longitude);
+      setLocation(nearest.key);
+      setLocating(false);
+      navigate(`/conditions?q=${encodeURIComponent(nearest.key)}`);
+    } catch (error) {
+      console.error('Location error:', error);
+      setLocating(false);
+      toast.error(t('home.locationDenied'));
+    }
   };
 
   return (
@@ -170,7 +189,7 @@ const Index = () => {
           <OceanBackground />
         </Suspense>
       </div>
-      {/* Hero */}
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -189,7 +208,6 @@ const Index = () => {
           {t('home.searchSub')}
         </p>
 
-        {/* Search */}
         <form onSubmit={handleLocationSubmit} className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted-foreground" />
           <Input
@@ -212,7 +230,6 @@ const Index = () => {
         </Button>
       </motion.div>
 
-      {/* AI Tip of the Day */}
       {dailyTip && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -225,7 +242,9 @@ const Index = () => {
                 <span className="text-lg">🎣</span>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-0.5">{t('home.castmateTip')}</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-0.5">
+                  {t('home.castmateTip')}
+                </p>
                 <h3 className="text-sm font-bold text-foreground">{dailyTip.title}</h3>
                 <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{dailyTip.body}</p>
               </div>
@@ -234,7 +253,6 @@ const Index = () => {
         </motion.div>
       )}
 
-      {/* AI Assistant — highlighted banner */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -258,7 +276,6 @@ const Index = () => {
         </Link>
       </motion.div>
 
-      {/* Features — clean list */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
