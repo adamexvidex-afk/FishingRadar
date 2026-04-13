@@ -1,9 +1,3 @@
-Seveda — tukaj imaš cel popravljeni Index.tsx z iOS-friendly geolokacijo prek @capacitor/geolocation.
-
-
-
-Samo copy-paste celega fajla.
-
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
