@@ -1,3 +1,4 @@
+import { Geolocation } from '@capacitor/geolocation';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -145,36 +146,37 @@ const Index = () => {
     }
   };
 
-  const handleUseMyLocation = async () => {
-    try {
-      setLocating(true);
+ const handleUseMyLocation = async () => {
+  try {
+    setLocating(true);
 
-      const permission = await Geolocation.requestPermissions();
+    const permission = await Geolocation.requestPermissions();
 
-      if (
-        permission.location !== 'granted' &&
-        permission.coarseLocation !== 'granted'
-      ) {
-        setLocating(false);
-        toast.error(t('home.locationDenied'));
-        return;
-      }
-
-      const pos = await Geolocation.getCurrentPosition({
-        enableHighAccuracy: true,
-        timeout: 15000,
-      });
-
-      const nearest = findNearest(pos.coords.latitude, pos.coords.longitude);
-      setLocation(nearest.key);
-      setLocating(false);
-      navigate(`/conditions?q=${encodeURIComponent(nearest.key)}`);
-    } catch (error) {
-      console.error('Location error:', error);
+    if (
+      permission.location !== 'granted' &&
+      permission.coarseLocation !== 'granted'
+    ) {
       setLocating(false);
       toast.error(t('home.locationDenied'));
+      return;
     }
-  };
+
+    const pos = await Geolocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 30000,
+      maximumAge: 0,
+    });
+
+    const nearest = findNearest(pos.coords.latitude, pos.coords.longitude);
+    setLocation(nearest.key);
+    setLocating(false);
+    navigate(`/conditions?q=${encodeURIComponent(nearest.key)}`);
+  } catch (error) {
+    console.error('Location error:', error);
+    setLocating(false);
+    toast.error(t('home.locationDenied'));
+  }
+};
 
   return (
     <div className="relative isolate px-4 py-6 space-y-6 max-w-2xl mx-auto min-h-[80vh]">
