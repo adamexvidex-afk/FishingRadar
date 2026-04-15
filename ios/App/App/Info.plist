@@ -53,5 +53,13 @@
         <string>FishingRadar needs your location to find nearby fishing conditions.</string>
         <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
         <string>FishingRadar needs your location to find nearby fishing conditions.</string>
+        <key>NSCameraUsageDescription</key>
+        <string>FishingRadar needs camera access to take profile photos.</string>
+
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>FishingRadar needs access to your photos.</string>
+
+        <key>NSPhotoLibraryAddUsageDescription</key>
+        <string>FishingRadar needs access to save photos.</string>
 </dict>
 </plist>
